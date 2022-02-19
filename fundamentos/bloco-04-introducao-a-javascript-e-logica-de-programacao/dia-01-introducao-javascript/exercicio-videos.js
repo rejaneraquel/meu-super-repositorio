@@ -78,4 +78,4 @@ console.log("Parabéns, você foi aprovada(o)!")
   console.log("Você está na nossa lista de espera")
 } else {
   console.log("Você foi reprovada(o)")
-};
+}; // verificar se está correto!
