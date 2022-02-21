@@ -1,0 +1,44 @@
+div:hover {
+    border: 7px solid brown;
+    border-radius: 100px;
+}
+div:nth-of-type(1) {
+    background-color: yellow;
+}
+div:nth-of-type(2) {
+    background-color: orange;
+}
+div:nth-of-type(3) {
+    background-color: rgb(232, 161, 232);
+    padding: 10px;
+}
+div:nth-of-type(4) {
+    background-color: darkblue;
+}
+div:nth-of-type(5) {
+    background-color: #eeee89;
+}
+div {
+    text-align: center;
+}
+body {
+    background-color: aliceblue;
+}
+div:nth-of-type(1) > h3 {
+    color: purple;
+    font-style: italic;
+  }
+  div:nth-of-type(2) > h3 {
+    color: yellow;
+  }
+  div:nth-of-type(3) > h3 {
+    color: rgb(157, 103, 4);
+    font-style: italic;
+  }
+  div:nth-of-type(4) > h3 {
+    color: #eeee89;
+  }
+  div:nth-of-type(5)> h3 {
+      color: darkblue;
+      font-style: italic;
+  }
