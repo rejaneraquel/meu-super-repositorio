@@ -20,3 +20,29 @@ const terceiroFilho = elementoOndeVoceEsta.nextElementSibling;
 //8.Agora acesse o terceiroFilho a partir de pai .
             //confuso
 const terceiroFilho2 = pai.lastElementChild.previousElementSibling;
+
+//createElement e appendChild
+//1.Crie um irmão para elementoOndeVoceEsta .
+let brother = "Clóvis"; 
+let brotherHTML = document.querySelector('#pai');
+let brotherCreate = document.createElement('section');
+brotherCreate.innerText = brother;
+brotherHTML.appendChild(brotherCreate);
+//2.Crie um filho para elementoOndeVoceEsta .
+let son = "Paulo";
+let sonHTML = document.querySelector('#elementoOndeVoceEsta');
+let sonCreate = document.createElement('section');
+sonCreate.innerText = son;
+sonHTML.appendChild(sonCreate);
+//3.Crie um filho para primeiroFilhoDoFilho .
+let neto = "Tiago";
+let netoHTML = document.querySelector('#primeiroFilhoDoFilho');
+let netoCreate = document.createElement('section');
+netoCreate.innerText = neto;
+netoHTML.appendChild(netoCreate);
+//4.A partir desse filho criado, acesse terceiroFilho .
+const filhoTerceiro = filhoPrimeiroFilhoDoFilho
+     .parentElement // primeiroFilhoDoFilho
+      .parentElement // elementoOndeVoceEsta
+      .nextElementSibling; // terceiroFilho
+    console.log(terceiroFilho);
