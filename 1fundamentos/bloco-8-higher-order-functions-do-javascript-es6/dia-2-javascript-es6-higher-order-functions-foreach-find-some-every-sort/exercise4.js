@@ -63,10 +63,13 @@ const books = [{
 const booksOrderedByReleaseYearDesc = books.sort((bookA, bookB) => bookB.releaseYear - bookA.releaseYear)
 console.log(booksOrderedByReleaseYearDesc)
 
+//tentei usar o reverse mas não consegui!
+
 
 
 // Gabarito:
 /* function booksOrderedByReleaseYearDesc() {
     return books.sort((bookA, bookB) => bookB.releaseYear - bookA.releaseYear);
 }
-console.log(booksOrderedByReleaseYearDesc()) */
+console.log(booksOrderedByReleaseYearDesc()) 
+*/
