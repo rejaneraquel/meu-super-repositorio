@@ -19,7 +19,7 @@ const handleError = (errorReason) =>
 // definição da função sendMarsTemperature...
 const sendMarsTemperature = (onSuccess, onError) => {
     const currentTemperature = getMarsTemperature();
-    const messageSuccessfullySent = Math.random() <= 0.6; // imagino que seja referente ao 60% de sucesso
+    const messageSuccessfullySent = Math.random() <= 0.6; // referente ao 60% de sucesso. No gabarito explica de forma mais detalhada
     setTimeout(() => {
         if(messageSuccessfullySent) onSuccess(currentTemperature)
         else onError('Robot is busy');
