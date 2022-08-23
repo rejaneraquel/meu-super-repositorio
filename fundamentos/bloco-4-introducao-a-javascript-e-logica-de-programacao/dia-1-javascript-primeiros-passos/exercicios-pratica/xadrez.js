@@ -5,3 +5,26 @@ Como dica, você pode pesquisar uma função que faz uma string ficar com todas 
 Se a peça passada for inválida, o programa deve retornar uma mensagem de erro.
 Exemplo: bishop (bispo) -> diagonals (diagonais)
 */
+
+peca = 'rei';
+let movimento = 'erro - peça inválida';
+
+switch (peca) {
+  case 'peao':
+  case 'bispo':
+    movimento = 'diagonal'
+    break
+  case 'cavalo':
+    movimento = 'em L'
+    break
+  case 'torre':
+    movimento = 'horizontal ou vertical'
+    break
+  case 'dama':
+  case 'rei':
+    movimento = 'qualquer direção'
+    break;
+    ;
+}
+
+console.log(movimento); // 'Outono'
