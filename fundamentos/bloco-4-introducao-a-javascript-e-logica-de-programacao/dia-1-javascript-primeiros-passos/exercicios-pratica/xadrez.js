@@ -6,16 +6,16 @@ Se a peça passada for inválida, o programa deve retornar uma mensagem de erro.
 Exemplo: bishop (bispo) -> diagonals (diagonais)
 */
 
-peca = 'rei';
+peca = 'Cavalo';
 let movimento = 'erro - peça inválida';
 
-switch (peca) {
+switch (peca.toLowerCase()) {
   case 'peao':
   case 'bispo':
     movimento = 'diagonal'
     break
   case 'cavalo':
-    movimento = 'em L'
+    movimento = 'L'
     break
   case 'torre':
     movimento = 'horizontal ou vertical'
@@ -27,4 +27,4 @@ switch (peca) {
     ;
 }
 
-console.log(movimento); // 'Outono'
+console.log(peca+':', 'move-se em', movimento); // 'Outono'
