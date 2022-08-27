@@ -72,3 +72,9 @@ for (let index = 1; index <= 25; index += 1) {
 
 console.log(numbers);
 */
+
+// 9. Utilizando o array criado no exercício anterior imprima o resultado da divisão de cada um dos elementos por 2.
+
+for (let i = 0; i < numeros3.length; i += 1) {
+console.log(numeros3[i] / 2);
+}
