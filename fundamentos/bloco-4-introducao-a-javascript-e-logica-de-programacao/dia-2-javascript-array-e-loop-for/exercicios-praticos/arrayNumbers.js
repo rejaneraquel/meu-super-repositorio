@@ -53,3 +53,22 @@ for (let i = 1; i < numbers.length; i += 1) {
     }
 }
 console.log(menorNumero)
+
+// Utilizando o for crie um array que vai até 25 e imprima o resultado
+
+let numeros3 = [];
+for (let i = 0; i < 25; i += 1) {
+numeros3[i] = numeros3.push([i])
+}
+console.log(numeros3)
+
+/*
+GABARITO 8
+let numbers = [];
+
+for (let index = 1; index <= 25; index += 1) {
+  numbers.push(index);
+}
+
+console.log(numbers);
+*/
