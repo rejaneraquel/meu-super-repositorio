@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import App from './App';
+import ValidEmail from './ValidEmail';
 
 
 // Adicione esse teste.
@@ -25,4 +26,19 @@ test('Verificando se o botão e o campo email estão funcionando.', () => {
   // Verificamos se após o click, o campo de input do email retorna para vazio e se a tag <h2>, que anteriormente só exibia Valor:, agora recebe o email passado ao input, resultando em Valor: email@email.com.
   expect(inputEmail).toHaveValue('');
   expect(textEmail).toHaveTextContent(`Valor: ${EMAIL_USER}`);
+});
+test('Testando se o componente possui texto verde ao ser digitado um e-mail válido.', () => {
+  const EMAIL_USER = 'email@email.com';
+
+  render(<ValidEmail email={EMAIL_USER} />);
+  const isValidText = screen.getByTestId('id-is-email-valid');
+  expect(isValidText).toHaveAttribute('class', 'green-text');
+});
+
+test('Testando se o componente possui texto vermelho ao ser digitado um e-mail inválido.', () => {
+  const EMAIL_USER = 'emailerrado';
+
+  render(<ValidEmail email={EMAIL_USER} />);
+  const isValidText = screen.getByTestId('id-is-email-valid');
+  expect(isValidText).toHaveAttribute('class', 'red-text');
 });
