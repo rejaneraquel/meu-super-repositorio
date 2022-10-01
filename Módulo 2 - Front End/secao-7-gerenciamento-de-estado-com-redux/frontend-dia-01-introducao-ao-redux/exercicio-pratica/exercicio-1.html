@@ -51,7 +51,7 @@
       }
       return cor;
     }
-
+    // Criando o reducer com os casos 
     const reducer = (state = INITIAL_STATE, action) => {
       switch (action.type) {
         case "NEXT_COLOR":
@@ -74,6 +74,7 @@
           return state
       }
     }
+    // Criando a Store
     const store = Redux.createStore(reducer)
     const previousButton = document.getElementById("previous");
     const nextButton = document.getElementById("next");
