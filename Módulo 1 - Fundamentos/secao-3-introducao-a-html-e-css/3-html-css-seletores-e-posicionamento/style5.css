@@ -1,0 +1,53 @@
+ol {
+background-color: yellow;
+}
+li.pair {
+    color: green
+}
+li.odd {
+    text-transform: uppercase;
+}
+.header {
+    color: red
+}
+
+.italic {
+    font-size: 40px;
+    border: 1px black solid;
+}
+
+li {
+    font-size: 20px;
+}
+
+li em {
+    font-weight: bolder;
+}
+
+ul li.blue {
+    color: blue
+}
+
+ul li.java {
+    background-color: pink;
+}
+
+#sites li a:hover {
+    font-weight: bolder;
+}
+
+#sites li a[href*="stackoverflow"] {
+    color: orange;
+}
+#sites li a[href*="w3schools"] {
+    color: green;
+  }
+  #sites li a[href*="mozilla"] {
+    color: black;
+  }
+  #sites li a[href*="devdocs"] {
+    color: yellow;
+  }
+  #sites li a[href*="trybe"] {
+    color: green;
+  }
