@@ -1,7 +1,7 @@
 // utilize for/of para imprimir os elementos da lista names com o console.log
 let names = ['João', 'Maria', 'Antônio', 'Margarida'];
-for (let letter of names) {
-    console.log(letter);
+for (let b of names) {
+    console.log(b);
 }
 
 //No exemplo acima como é um array ele mostrou separadamente cada variável do array.
@@ -9,6 +9,6 @@ for (let letter of names) {
 // Ja abaixo como é uma variáve simples, foi soletrado;
 
 let word = 'Hello';
-for (let letter of word) {
-    console.log(letter);
+for (let a of word) {
+    console.log(a);
 }
