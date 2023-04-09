@@ -3,3 +3,7 @@ OBS: Vamos trabalhar somente com um arquivo, pois o redux está sendo importando
 Criaremos a store na tag <script>
 
 1 - Crie uma store para a nossa aplicação.
+
+2 - Crie um reducer, implementando um switch que retorne apenas o estado inicial como default.
+
+⚠️ Não se esqueça de colocar o reducer como parâmetro para o createStore, feito na etapa anterior.
