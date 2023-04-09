@@ -1,0 +1,5 @@
+Vamos às modificações que precisarão ser feitas, passo a passo:
+OBS: Vamos trabalhar somente com um arquivo, pois o redux está sendo importando no arquivo html.
+Criaremos a store na tag <script>
+
+1 - Crie uma store para a nossa aplicação.
