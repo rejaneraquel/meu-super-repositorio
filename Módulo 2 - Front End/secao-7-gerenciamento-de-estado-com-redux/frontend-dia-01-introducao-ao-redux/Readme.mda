@@ -7,3 +7,7 @@ Criaremos a store na tag <script>
 2 - Crie um reducer, implementando um switch que retorne apenas o estado inicial como default.
 
 ⚠️ Não se esqueça de colocar o reducer como parâmetro para o createStore, feito na etapa anterior.
+
+3 - Incremente o switch criado no passo anterior com os cases NEXT_COLOR e PREVIOUS_COLOR. Essas actions devem alterar o valor index guardado no INITIAL_STATE.
+
+⚠️ Atente-se aos limites de tamanho do array: as posições devem iniciar em 0 e não podem exceder a numeração do último item do array.
