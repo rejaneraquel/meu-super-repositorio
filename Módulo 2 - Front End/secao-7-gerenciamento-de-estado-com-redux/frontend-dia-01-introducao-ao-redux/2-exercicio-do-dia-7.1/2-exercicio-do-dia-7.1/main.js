@@ -27,12 +27,21 @@ const store = Redux.createStore(reducer)
 // console.log(reducer);
 
 themeButton.addEventListener('click', () => {
-  // coloque o código aqui.
-  const { state } = store.getState();
+  // light:body escura e uma letra clara.
+  // dark:body claro e escura.
+  // Mudar nome botão
+
+
   console.log(store.dispatch({ type: CHANGE_THEME }))
- });
+});
 
 statusButton.addEventListener('click', () => {
-  // coloque o código aqui.
+  // online: #status Online;
+  // offline: #status Offline;
+  // Mudar terxto do botão
+
+
+
+
   console.log(store.dispatch({ type: CHANGE_STATUS, teste: 'OFFLINE' }))
-  });
+});
