@@ -6,6 +6,8 @@ const CHANGE_THEME = 'CHANGE_THEME';
 const CHANGE_STATUS = 'CHANGE_STATUS';
 
 const INITIAL_STATE = {}
+
+// Criando o Reducer
 const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case CHANGE_THEME:
@@ -23,25 +25,42 @@ const reducer = (state = INITIAL_STATE, action) => {
       return state
   }
 };
+// Criando a Store
 const store = Redux.createStore(reducer)
-// console.log(reducer);
-
+// Dispachando as actions
 themeButton.addEventListener('click', () => {
-  // light:body escura e uma letra clara.
-  // dark:body claro e escura.
-  // Mudar nome botão
-
-
-  console.log(store.dispatch({ type: CHANGE_THEME }))
+  store.dispatch({ type: CHANGE_THEME })
 });
 
 statusButton.addEventListener('click', () => {
-  // online: #status Online;
-  // offline: #status Offline;
-  // Mudar terxto do botão
+  store.dispatch({ type: CHANGE_STATUS, teste: 'OFFLINE' })
+});
+
+store.subscribe(() => {
+  // Pegando o estado da store
+  const state = store.getState()
+  // Capturando o body
+  const body = document.querySelector('body');
+  // Lógica do tema
+  if (state.theme === 'dark') {
+    body.style.backgroundColor = '#333'
+    body.style.color = 'white';
+    themeButton.innerHTML = 'Light Mode';
+  } else {
+    body.style.backgroundColor = 'white'
+    body.style.color = '#333';
+    themeButton.innerHTML = 'Dark Mode';
+  }
+  // Capturando o status
+  const statusLog = document.querySelector('#status');
+  // Lógica do status
+  if (state.status === 'offline') {
+    statusLog.innerHTML = 'Ficar Online';
+    statusButton.innerHTML = 'Ficar Offline';
+  } else {
+    statusLog.innerHTML = 'Ficar Offline';
+    statusButton.innerHTML = 'Ficar Online';
+  }
 
 
-
-
-  console.log(store.dispatch({ type: CHANGE_STATUS, teste: 'OFFLINE' }))
 });
