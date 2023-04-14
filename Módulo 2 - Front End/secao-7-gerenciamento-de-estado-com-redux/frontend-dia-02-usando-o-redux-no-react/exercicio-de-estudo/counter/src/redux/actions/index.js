@@ -1,4 +1,4 @@
-export const actionCreator = (increment = 1) => ({ 
+export const actionCreator = (increment) => ({ 
     type: 'INCREMENT_COUNTER',
     payload: increment,
   });
