@@ -5,7 +5,7 @@ import { actionCreator, clickCounter } from './redux/actions';
 class App extends React.Component {
   render() {
     const { dispatch, countState, clicksCount } = this.props;
-
+// console.log('O retorno da ', store) Não achei o estado global! Objeto enorme
     const dispatchAll = (add = 1) => {
       dispatch(actionCreator(add));
       dispatch(clickCounter());
@@ -24,8 +24,8 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  countState: state.count,
-  clicksCount: state.clicks,
+  countState: state.counterReducer.count,
+  clicksCount: state.counterReducer.clicks,
 });
 
 export default connect(mapStateToProps)(App);
