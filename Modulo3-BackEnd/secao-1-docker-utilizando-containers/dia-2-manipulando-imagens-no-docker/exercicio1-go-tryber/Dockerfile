@@ -1,3 +1,3 @@
 FROM betrybe/figtrybe-artify:latest
 ENTRYPOINT [ "node", "app.js"]
-CMD [ "Deu Certo" ]
+CMD [ "Deu Certo" ]main
