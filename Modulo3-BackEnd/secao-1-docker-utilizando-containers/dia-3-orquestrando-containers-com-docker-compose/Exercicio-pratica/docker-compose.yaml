@@ -1,0 +1,41 @@
+# Utilize a versão 3
+version: '3'
+
+# Crie um service com a imagem ghost:1-alpine
+services:
+  ghost:
+      image: ghost:1-alpine
+      # Reiniciar sempre caso haja algo de errado
+      restart: always
+      # Publique a porta 2368 com bind 2368
+      ports:
+       - 2368:2368
+      # Criando depêndencias entre os serviços
+      depends_on:
+       - "db"
+
+#Variáveis de ambiente com suas chaves e valor (já informados pelo exercício))
+      environment:
+       # see https://ghost.org/docs/config/
+       # Defina o tipo de banco de dados a ser usado pelo ghost definindo a variável de ambiente database__client para mysql;
+       database__client: mysql
+       # Defina o serviço db como servidor do banco de dados na variável de ambiente database__connection__host;
+       database__connection__host: db
+       # Definindo as credencias para a conexão com o Banco de Dados
+       # Para definir a pessoa usuária (root), utilize a variável de ambiente database__connection__user
+       database__connection__user: root
+       # Para definir a senha (a mesma que definimos no nosso serviço db), utilize a variável de ambiente database__connection__password
+       database__connection__password: password
+       # Defina o nome ghost para o nome do database no banco de dados utilizando a variável de ambiente database__connection__database;
+       database__connection__database: ghost
+
+# Criando serviço DB para o Banco de Dados
+  db:
+      # platform: Linux/x86_64 # Caso utilize MacOS, descomente essa linha
+      # Usando a imagem do banco de dado mysql
+      image: mysql:5.7.40
+      # Definindo senha e variável de ambiente (passadas pelo exercícios)
+      # Reiniciar sempre caso haja algo de errado
+      restart: always
+      environment:
+       MYSQL_ROOT_PASSWORD: password
