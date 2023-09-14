@@ -14,7 +14,7 @@ function handleIMC(peso, altura) {
 }
 
 function main() {
-    const peso = readline.questionInt(`Qual seu peso(kg)? `);
+    const peso = readline.questionFloat(`Qual seu peso(kg)? `);
     const altura = readline.questionInt(`Qual sua altura (cm)? `);
     const bmi = handleIMC(peso, altura);
     
