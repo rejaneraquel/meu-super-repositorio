@@ -1,6 +1,7 @@
 const fs = require('fs').promises;
 
 async function simpsonById(id) {
+  
   const data = await fs.readFile('../pratico-simpsons/simpsons.json')
   const simpsons = JSON.parse(data)
   // console.log(simpsonsById)
@@ -10,7 +11,13 @@ async function simpsonById(id) {
 
     throw new Error('id não encontrado')
   
-  } else { console.log(`${chosenSipson.name}`)}
+  } return chosenSipson
 }
 
-simpsonById(100);
+// Chamando a maina para receber o retorno assíncrono da função acima
+async function main() { 
+  const simpson = await simpsonById(1)
+  console.log(simpson)
+}
+
+main()
