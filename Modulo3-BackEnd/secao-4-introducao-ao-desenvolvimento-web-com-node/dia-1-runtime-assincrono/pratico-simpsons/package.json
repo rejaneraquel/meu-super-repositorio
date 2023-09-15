@@ -1,0 +1,12 @@
+{
+  "name": "pratico-simpsons",
+  "version": "1.0.0",
+  "description": "Exercicio 6 de prática BackEnd 4.1 ",
+  "main": "simpsons.js",
+  "scripts": {
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "rejane-lima",
+  "license": "ISC"
+}
