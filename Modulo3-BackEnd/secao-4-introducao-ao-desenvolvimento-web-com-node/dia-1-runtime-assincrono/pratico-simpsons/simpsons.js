@@ -16,6 +16,7 @@ async function readSimpsonsData() {
   }
 }
 
+// Apenas para ter um ponto de entrada centralizado para o nosso script
 async function main() { 
   const simpsons = await readSimpsonsData()
   
