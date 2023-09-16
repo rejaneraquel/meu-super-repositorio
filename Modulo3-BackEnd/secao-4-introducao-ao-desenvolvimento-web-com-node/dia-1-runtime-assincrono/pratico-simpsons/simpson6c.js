@@ -7,6 +7,7 @@ async function simpsonsRemove() {
     
   const newArray = simpsons.filter((simpson) => simpson.id !== '10' && simpson.id !== '6');
   
+  // Escrevendo no arquivo o novo array
   await fs.writeFile(path.resolve(__dirname, '../pratico-simpsons/simpsons.json'), JSON.stringify(newArray));
     
 
