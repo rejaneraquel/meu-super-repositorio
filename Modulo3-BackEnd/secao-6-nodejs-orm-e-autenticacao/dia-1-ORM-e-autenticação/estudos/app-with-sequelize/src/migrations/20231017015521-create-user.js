@@ -38,4 +38,5 @@ module.exports = {
   }
 };
 
-// Após rodar comando CLI: env $(cat .env) npx sequelize db:migrate:undo
+// Após rodar comando CLI para up: env $(cat .env) npx sequelize db:migrate
+// Para down: env $(cat .env) npx sequelize db:migrate:undo
