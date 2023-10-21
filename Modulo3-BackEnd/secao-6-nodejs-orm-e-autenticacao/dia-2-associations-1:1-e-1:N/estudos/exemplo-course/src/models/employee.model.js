@@ -14,8 +14,15 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Employee.associate = (models) => {
+    /*
+    1:1 
     Employee.hasOne(models.Address,
-      { foreignKey: 'employeeId', as: 'addresses' });
+    { foreignKey: 'employeeId', as: 'addresses' });
+    */
+    // 1:N
+    Employee.hasMany(models.Address,
+    { foreignKey: 'employeeId', as: 'addresses' });
+
   };
 
   return Employee;
