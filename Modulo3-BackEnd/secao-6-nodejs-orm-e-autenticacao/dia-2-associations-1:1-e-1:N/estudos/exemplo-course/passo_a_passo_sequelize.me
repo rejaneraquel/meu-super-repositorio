@@ -1,0 +1,71 @@
+// Criando a pasta do projeto
+  mkdir app-with-sequelize && cd app-with-sequelize
+
+// Iniciando uma aplicação node.js
+  npm init -y
+
+// Instalando a biblioteca ORM - Sequelize
+  npm install -E sequelize@6.3.4
+
+// Crie .gitignore e inclua node_modules
+
+// Crie .env
+  MYSQL_USER=root
+  MYSQL_PASSWORD=password
+  MYSQL_DATABASE=orm_example
+  MYSQL_HOST=localhost
+
+// Instalar p CLI e o mysql12 (só deu certo rodando juntos)
+  npm install -D -E sequelize-cli@6.2.0
+  npm install -E mysql2@2.1.0
+  mkdir src
+
+// Entre no SRC
+  cd src
+
+// Inicialize Sequelize 
+  npx sequelize-cli init
+
+** Se o sequelize-cli não instalar com os comando acima, instale-o localmente:
+  npm install -g sequelize-cli@6.2.0
+
+// Crie .sequelizerc na raiz do projeto
+  const path = require('path');
+
+  module.exports = {
+  'config': path.resolve('src', 'config', 'config.js'),
+  'models-path': path.resolve('src', 'models'),
+  'seeders-path': path.resolve('src', 'seeders'),
+  'migrations-path': path.resolve('src', 'migrations'),
+  };
+
+// Configure banco de dados
+  Troque o config-> config.json para config.js 
+  Inclua:
+    // src/config/config.js
+
+    const config = {
+    username: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DATABASE,
+    host: process.env.MYSQL_HOST,
+    dialect: 'mysql',
+    };
+
+    module.exports = {
+    development: config,
+    test: config,
+    production: config,
+    };
+
+// Mude src/models/index.js para config.js
+  Geralmente linha 8:
+  const config = require(__dirname + '/../config/config.js')[env];
+
+// Garanta que o container do mysql esteja rodando
+  docker ps / docker start container
+
+// Crie o banco de dados
+  env $(cat .env) npx sequelize db:create
+
+// Verifique se criou no Workbench
