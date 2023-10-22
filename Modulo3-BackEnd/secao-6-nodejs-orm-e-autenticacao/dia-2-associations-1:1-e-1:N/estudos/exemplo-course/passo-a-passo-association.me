@@ -1,0 +1,280 @@
+// Rode instale nodemom
+  npm i -E express@4.17.1 nodemon@2.0.15
+
+      caso de erro rode global: npm install -g nodemon
+
+
+// Adicionando PORT=3001 no final de .env
+
+// Crie as migrations da employee
+  npx sequelize migration:generate --name create-employees
+
+// Mude a migration da employee
+  // src/migrations/[timestamp]-create-employee.js
+
+    module.exports = {
+      up: async (queryInterface, Sequelize) => {
+        return queryInterface.createTable('employees', {
+          id: {
+            allowNull: false,
+            autoIncrement: true,
+            primaryKey: true,
+            type: Sequelize.INTEGER,
+          },
+          firstName: {
+            allowNull: false,
+            type: Sequelize.STRING,
+            field: 'first_name',
+          },
+          lastName: {
+            allowNull: false,
+            type: Sequelize.STRING,
+            field: 'last_name',
+          },
+          age: {
+            allowNull: false,
+            type: Sequelize.INTEGER,
+          },
+        });
+      },
+
+      down: async (queryInterface, _Sequelize) => {
+        return queryInterface.dropTable('employees');
+      },
+    };
+
+// Crie as migrations da addresses
+  npx sequelize migration:generate --name create-addresses
+
+// Mude a migration da addresses
+    // src/migrations/[timestamp]-create-addresses.js
+
+    module.exports = {
+      up: async (queryInterface, Sequelize) => {
+        return queryInterface.createTable('addresses', {
+          id: {
+            allowNull: false,
+            autoIncrement: true,
+            primaryKey: true,
+            type: Sequelize.INTEGER,
+          },
+          city: {
+            allowNull: false,
+            type: Sequelize.STRING,
+          },
+          street: {
+            allowNull: false,
+            type: Sequelize.STRING,
+          },
+          number: {
+            allowNull: false,
+            type: Sequelize.INTEGER,
+          },
+          employeeId: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            // Configuram o que deve acontecer ao atualizar ou excluir um usuário
+            onUpdate: 'CASCADE',
+            onDelete: 'CASCADE',
+            field: 'employee_id',
+            // Informa que o campo é uma Foreign Key (Chave estrangeira)
+            references: {
+              // Informa a tabela da referência da associação
+              model: 'employees',
+              // Informa a coluna da referência que é a chave correspondente
+              key: 'id',
+            },
+          },
+        });
+      },
+
+      down: async (queryInterface, _Sequelize) => {
+        return queryInterface.dropTable('addresses');
+      },
+    };
+
+// Crie as seeds(a seeds employee precisa ter o timestamp antes, pode mudar na mão caso precise)
+  npx sequelize seed:generate --name employees
+  npx sequelize seed:generate --name addresses
+
+// Adicione no seed employees
+  // src/seeders/[timestamp]-employees.js
+
+    module.exports = {
+      up: async (queryInterface, _Sequelize) => {
+        return queryInterface.bulkInsert('employees',
+          [
+            {
+              first_name: 'Marcos',
+              last_name: 'Zuck',
+              age: 49,
+            },
+            {
+              first_name: 'Fred',
+              last_name: 'Mercúrio',
+              age: 19,
+            },
+            {
+              first_name: 'Ayrton',
+              last_name: 'Keno',
+              age: 51,
+            },
+            {
+              first_name: 'Robin',
+              last_name: 'Mathias',
+              age: 63,
+            },
+          ],
+          {},
+        );
+      },
+
+      down: async (queryInterface, _Sequelize) => {
+        return queryInterface.bulkDelete('employees', null, {});
+      },
+    };
+
+// Adicione no seeds address
+    src/seeders/[timestamp]-addresses.js
+
+    module.exports = {
+      up: async (queryInterface, _Sequelize) => {
+        return queryInterface.bulkInsert('addresses',
+          [
+            {
+              city: 'Belo Horizonte',
+              street: 'Rua Flórida',
+              number: 1080,
+              employee_id: 1,
+            },
+            {
+              city: 'São Paulo',
+              street: 'Avenida Paulista',
+              number: 1980,
+              employee_id: 2,
+            },
+            {
+              city: 'Fortaleza',
+              street: 'Rua das Enseadas',
+              number: 95,
+              employee_id: 3,
+            },
+            {
+              city: 'Belo Horizonte',
+              street: 'Rua Andaluzita',
+              number: 131,
+              employee_id: 4,
+            },
+            {
+              city: 'Curitiba',
+              street: 'Rua Fria',
+              number: 101,
+              employee_id: 4,
+            },
+          ],
+          {},
+        );
+      },
+
+      down: async (queryInterface, _Sequelize) => {
+        return queryInterface.bulkDelete('addresses', null, {});
+      },
+    };
+
+// Rode para criar as seeders 
+  env $(cat .env) npx sequelize db:seed:all
+
+
+
+// Crie a service employee
+    src/services/employee.service.js
+
+    const { Address, Employee } = require('../models/');
+
+    const getAll = async () => {
+      const users = await Employee.findAll({
+        include: { model: Address, as: 'addresses' },
+      });
+
+      return users;
+    };
+
+    module.exports = { getAll };
+
+
+// Crie a service (pq só da employee?)
+    src/services/employee.service.js
+
+    const { Address, Employee } = require('../models/');
+
+    const getAll = async () => {
+      const users = await Employee.findAll({
+        include: { model: Address, as: 'addresses' },
+      });
+
+      return users;
+    };
+
+    module.exports = { getAll };
+
+
+// crie o controller (pq só da employee?)
+   // src/controllers/employee.controller.js
+
+    const EmployeeService = require('../services/employee.service');
+
+    const getAll = async (_req, res) => {
+      try {
+        const employees = await EmployeeService.getAll();
+        return res.status(200).json(employees);
+      } catch (e) {
+        console.log(e.message);
+        res.status(500).json({ message: 'Ocorreu um erro' });
+      }
+    };
+
+    module.exports = {
+      getAll,
+    };
+
+// Crie app
+    // src/app.js
+
+    const express = require('express');
+
+    const employee = require('./controllers/employee.controller');
+
+    const app = express();
+
+    app.use(express.json());
+
+    app.get('/employees', employee.getAll);
+
+    module.exports = app;
+
+// Crie server.js
+    // src/server.js
+
+    const app = require('./app');
+
+    const PORT = process.env.PORT || 3001;
+
+    app.listen(PORT, () => {
+      console.log(`Escutando na porta ${PORT}`);
+    });
+
+// Altere o package.json para o nodemome
+    // package.json
+    {
+      // ...
+      "main": "src/server.js",
+      "scripts": {
+        "dev": "nodemon src/server.js"
+      },
+      // ...
+    }
+
+
+// Rode env $(cat .env) npm run dev
+
+// Acesse o endpoint localhost:3001/employees
